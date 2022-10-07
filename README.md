@@ -30,3 +30,5 @@ For more information visit [Academic Integrity at RMIT](https://www.rmit.edu.au/
 [11] "Amazon EC2 instance IP addressing", docs.aws.amazon.com/, 2022. [Online]. Available: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#using-instance-addressing-common. [Accessed: 07- Oct- 2022].
 
 [12] "Resolve "Connection refused" or "Connection timed out" Errors When Connecting to an EC2 Instance with SSH", Amazon Web Services, Inc., 2022. [Online]. Available: https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-resolve-ssh-connection-errors/. [Accessed: 07- Oct- 2022].
+
+[13] N. Hadiq, "Deploy a Flask app on AWS EC2", Medium, 2022. [Online]. Available: https://medium.com/innovation-incubator/deploy-a-flask-app-on-aws-ec2-d1d774c275a2. [Accessed: 07- Oct- 2022].
