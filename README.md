@@ -32,3 +32,9 @@ For more information visit [Academic Integrity at RMIT](https://www.rmit.edu.au/
 [12] "Resolve "Connection refused" or "Connection timed out" Errors When Connecting to an EC2 Instance with SSH", Amazon Web Services, Inc., 2022. [Online]. Available: https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-resolve-ssh-connection-errors/. [Accessed: 07- Oct- 2022].
 
 [13] N. Hadiq, "Deploy a Flask app on AWS EC2", Medium, 2022. [Online]. Available: https://medium.com/innovation-incubator/deploy-a-flask-app-on-aws-ec2-d1d774c275a2. [Accessed: 07- Oct- 2022].
+
+
+https://flask-session.readthedocs.io/en/latest/
+https://medium.com/thedevproject/flask-sessions-what-are-they-for-how-it-works-what-options-i-have-to-persist-this-data-4ca48a34d3
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/example_dynamodb_CreateTable_section.html
+https://codebeautify.org/blog/how-to-create-json-file/
