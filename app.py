@@ -12,8 +12,8 @@ app.config.from_object('config.DevelopmentConfig')
 
 # setup all our dependencies
 try:
-    init_logins('login', 'logins.json', boto3.resource('dynamodb', 'ap-southeast-2'))
-    init_songs('music', 'songs.json', boto3.resource('dynamodb', 'ap-southeast-2'))
+    logins = init_logins('login', 'logins.json', boto3.resource('dynamodb', 'ap-southeast-2'))
+    songs = init_songs('music', 'songs.json', boto3.resource('dynamodb', 'ap-southeast-2'))
 except Exception as e:
     print(f"Something went wrong with the demo! Here's what: {e}")
 

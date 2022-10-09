@@ -1,14 +1,17 @@
 import json
 import logging
 from botocore.exceptions import ClientError
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import InputRequired
 
 logger = logging.getLogger(__name__)
 
 
 class Logins:
     def __init__(self, dyn_resource):
-        self.table = None
         self.dyn_resource = dyn_resource
+        self.table = None
 
     def exists(self, table_name):
         try:
@@ -34,11 +37,11 @@ class Logins:
                 TableName=table_name,
                 KeySchema=[
                     {'AttributeName': 'email', 'KeyType': 'HASH'},  # Partition key
-                    {'AttributeName': 'user_name', 'KeyType': 'RANGE'},  # Sort key
+                    {'AttributeName': 'password', 'KeyType': 'RANGE'},  # Sort key
                 ],
                 AttributeDefinitions=[
                     {'AttributeName': 'email', 'AttributeType': 'S'},
-                    {'AttributeName': 'user_name', 'AttributeType': 'S'},
+                    {'AttributeName': 'password', 'AttributeType': 'S'},
                 ],
                 ProvisionedThroughput={'ReadCapacityUnits': 10, 'WriteCapacityUnits': 10})
             self.table.wait_until_exists()
@@ -60,6 +63,18 @@ class Logins:
                 "Couldn't load data into table %s. Here's why: %s: %s", self.table.name,
                 err.response['Error']['Code'], err.response['Error']['Message'])
             raise
+
+    def get_login(self, email, password):
+        try:
+            response = self.table.get_item(Key={'email': email, 'password': password})
+        except ClientError as err:
+            logger.error(
+                "Couldn't get movie %s from table %s. Here's why: %s: %s",
+                email, self.table.name,
+                err.response['Error']['Code'], err.response['Error']['Message'])
+            raise
+        else:
+            return response['Item']
 
 
 class Songs:
@@ -119,6 +134,19 @@ class Songs:
             raise
 
 
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[InputRequired()])
+    password = PasswordField('Password', validators=[InputRequired()])
+    submit = SubmitField('Login')
+
+
+class RegisterForm(FlaskForm):
+    email = StringField('Email', validators=[InputRequired()])
+    user_name = StringField('Username', validators=[InputRequired()])
+    password = PasswordField('Password', validators=[InputRequired()])
+    submit = SubmitField('Register')
+
+
 def get_login_data(logins_file_name):
     try:
         with open(logins_file_name) as login_file:
@@ -160,6 +188,8 @@ def init_logins(table_name, logins_file_name, dyn_resource):
         logins.write_batch(login_data)
         print(f"\nWrote {len(logins_file_name)} logins into {logins.table.name}.")
 
+    return logins
+
 
 def init_songs(table_name, songs_file_name, dyn_resource):
     logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -179,3 +209,5 @@ def init_songs(table_name, songs_file_name, dyn_resource):
         print(f"\nReading data from '{songs_file_name}' into your table.")
         songs.write_batch(song_data)
         print(f"\nWrote {len(songs_file_name)} songs into {songs.table.name}.")
+
+    return songs
