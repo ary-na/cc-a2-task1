@@ -38,3 +38,10 @@ https://flask-session.readthedocs.io/en/latest/
 https://medium.com/thedevproject/flask-sessions-what-are-they-for-how-it-works-what-options-i-have-to-persist-this-data-4ca48a34d3
 https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/example_dynamodb_CreateTable_section.html
 https://codebeautify.org/blog/how-to-create-json-file/
+https://www.freecodecamp.org/news/css-vertical-align-how-to-center-a-div-text-or-an-image-example-code/
+https://getbootstrap.com/docs/5.0/getting-started/introduction/
+https://www.jquery-az.com/python-keyerror-handle-3-examples/
+https://realpython.com/python-keyerror/
+https://medium.com/featurepreneur/crud-operations-on-dynamodb-with-flask-apis-916f6cae992
+https://stackoverflow.com/questions/24119731/nonetype-object-has-no-attribute-getitem
+https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/dynamodb/GettingStarted/scenario_getting_started_movies.py
