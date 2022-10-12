@@ -70,3 +70,14 @@ https://www.askpython.com/python/string/dictionary-to-a-string
 
 
 https://stackoverflow.com/questions/14346065/upload-image-available-at-public-url-to-s3-using-boto?rq=1
+
+
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.Scan.html
+https://pythongeeks.org/switch-in-python/
+
+https://stackoverflow.com/questions/44704443/dynamodb-scan-using-filterexpression
+
+https://stackoverflow.com/questions/47569793/how-do-i-query-dynamodb-with-non-primary-key-field
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.Query.html

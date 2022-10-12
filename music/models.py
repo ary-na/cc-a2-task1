@@ -1,7 +1,7 @@
 import json
 import logging
 import requests
-from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Key, Attr
 from botocore.exceptions import ClientError
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
@@ -169,6 +169,18 @@ class Songs:
         else:
             return response['Items']
 
+    def query_music(self, title, year, artist):
+        try:
+            response = self.table.scan(
+                FilterExpression=Attr('title').eq(title) & Attr('year').eq(year) & Attr('artist').eq(artist))
+        except ClientError as err:
+            logger.error(
+                "Couldn't query for songs %s. Here's why: %s: %s",
+                err.response['Error']['Code'], err.response['Error']['Message'])
+            raise
+        else:
+            return response['Items']
+
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[InputRequired()])
@@ -181,6 +193,13 @@ class RegisterForm(FlaskForm):
     user_name = StringField('Username', validators=[InputRequired()])
     password = PasswordField('Password', validators=[InputRequired()])
     submit = SubmitField('Register')
+
+
+class QueryForm(FlaskForm):
+    title = StringField('Title')
+    year = StringField('Year')
+    artist = StringField('Artist')
+    submit = SubmitField('Query')
 
 
 def get_login_data(logins_file_name):
@@ -300,16 +319,16 @@ def get_num_objs(bucket, s3_client):
     return num_objs
 
 
-def generate_pre_signed_url(s3_client, client_method, method_parameters, expires_in):
+def generate_pre_signed_url(s3_client, s3_object_key):
     try:
         url = s3_client.generate_presigned_url(
-            ClientMethod=client_method,
-            Params=method_parameters,
-            ExpiresIn=expires_in
+            ClientMethod="get_object",
+            Params={'Bucket': "cc-a2-task1-img", 'Key': s3_object_key},
+            ExpiresIn=3600
         )
-        logger.info("Got presigned URL: %s", url)
+        logger.info("Got pre-signed URL: %s", url)
     except ClientError:
         logger.exception(
-            "Couldn't get a presigned URL for client method '%s'.", client_method)
+            "Couldn't get a pre-signed URL for client method '%s'.")
         raise
     return url
