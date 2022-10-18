@@ -73,6 +73,20 @@ https://www.askpython.com/python/string/dictionary-to-a-string
 https://stackoverflow.com/questions/14346065/upload-image-available-at-public-url-to-s3-using-boto?rq=1
 
 
+https://dynobase.dev/dynamodb-filterexpression/
+
+
+https://realpython.com/primer-on-jinja-templating/
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.WriteItem.html
+
+https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/dynamodb/GettingStarted/scenario_getting_started_movies.py
+
+
+https://stackoverflow.com/questions/6036082/call-a-python-function-from-jinja2
+
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.QueryFilter.html
 
 https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.Scan.html
 https://pythongeeks.org/switch-in-python/
