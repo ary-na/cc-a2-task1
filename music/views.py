@@ -1,18 +1,25 @@
 import boto3
 from flask import Blueprint, render_template, redirect, session, url_for, flash
 
-from music.models import QueryForm, Songs
+from music.models import QueryForm, Songs, generate_pre_signed_url, subscribe_new_music, Subscriptions, remove_music
 
 views = Blueprint('views', __name__, template_folder="templates/music")
 
 songs = Songs(boto3.resource('dynamodb', 'ap-southeast-2'))
+subscriptions = Subscriptions(boto3.resource('dynamodb', 'ap-southeast-2'))
 
 
 @views.route('/')
 def home():
     if not session.get('email'):
         return redirect(url_for('auth.login'))
-    return render_template("index.html")
+
+    scan_subscriptions = {}
+    if subscriptions.exists("subscriptions"):
+        scan_subscriptions = subscriptions.scan_subscriptions()
+
+    return render_template("index.html", subscriptions=scan_subscriptions,
+                           generate_pre_signed_url=generate_pre_signed_url)
 
 
 @views.route('/query', methods=['GET', 'POST'])
@@ -21,7 +28,7 @@ def query():
         return redirect(url_for('auth.login'))
 
     form = QueryForm()
-    query_songs = []
+    scan_songs = {}
 
     if form.validate_on_submit():
         title = form.title.data
@@ -29,24 +36,20 @@ def query():
         artist = form.artist.data
 
         if songs.exists("music"):
-            if title and not year and not artist:
-                query_songs = songs.query_music(title, year, artist)
-            elif year and not title and not artist:
-                query_songs = songs.query_music(title, year, artist)
-            elif artist and not year and not title:
-                query_songs = songs.query_music(title, year, artist)
-            elif title and year and not artist:
-                query_songs = songs.query_music(title, year, artist)
-            elif title and artist and not year:
-                query_songs = songs.query_music(title, year, artist)
-            elif artist and year and not title:
-                query_songs = songs.query_music(title, year, artist)
-            elif
-
-            query_songs = songs.query_music(title, year, artist)
-            if not query_songs:
+            scan_songs = songs.scan_songs(title, year, artist)
+            if not scan_songs:
                 flash("No result is retrieved. Please query again.")
 
-            print(query_songs)
+    return render_template("query.html", form=form, songs=scan_songs, generate_pre_signed_url=generate_pre_signed_url)
 
-    return render_template("query.html", form=form, songs=query_songs)
+
+@views.route('/subscribe/<title>/<artist>')
+def subscribe(title, artist):
+    subscribe_new_music(title, artist)
+    return redirect(url_for('views.home'))
+
+
+@views.route('/remove/<title>')
+def remove(title):
+    remove_music(session['email'], title)
+    return redirect(url_for('views.home'))

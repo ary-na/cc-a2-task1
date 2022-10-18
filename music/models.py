@@ -1,8 +1,11 @@
 import json
 import logging
+
+import boto3
 import requests
 from boto3.dynamodb.conditions import Key, Attr
 from botocore.exceptions import ClientError
+from flask import session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired
@@ -16,6 +19,7 @@ class Logins:
         self.table = None
 
     def exists(self, table_name):
+
         try:
             table = self.dyn_resource.Table(table_name)
             table.load()
@@ -90,6 +94,19 @@ class Logins:
                 err.response['Error']['Code'], err.response['Error']['Message'])
             raise
 
+    def add_subscription(self, email, song):
+        try:
+            self.table.update_item(
+                Key={'email': email},
+                UpdateExpression="set subscriptions=:s",
+                ExpressionAttributeValues={':s': song})
+        except ClientError as err:
+            logger.error(
+                "Couldn't update movie %s in table %s. Here's why: %s: %s",
+                email, self.table.name,
+                err.response['Error']['Code'], err.response['Error']['Message'])
+            raise
+
     def query_login(self, email):
         try:
             response = self.table.query(KeyConditionExpression=Key('email').eq(email))
@@ -147,6 +164,18 @@ class Songs:
         else:
             return self.table
 
+    def get_song(self, title, artist):
+        try:
+            response = self.table.get_item(Key={'title': title, 'artist': artist})
+        except ClientError as err:
+            logger.error(
+                "Couldn't get song %s from table %s. Here's why: %s: %s",
+                title, self.table.name,
+                err.response['Error']['Code'], err.response['Error']['Message'])
+            raise
+        else:
+            return response['Item']
+
     def write_batch(self, songs):
         try:
             with self.table.batch_writer() as writer:
@@ -169,10 +198,25 @@ class Songs:
         else:
             return response['Items']
 
-    def query_music(self, title, year, artist):
+    def scan_songs(self, title, year, artist):
+
+        if title:
+            filter_expression = Attr('title').eq(title)
+        elif year:
+            filter_expression = Attr('year').eq(year)
+        elif artist:
+            filter_expression = Attr('artist').eq(artist)
+        elif title and year:
+            filter_expression = Attr('title').eq(title) & Attr('year').eq(year)
+        elif title and artist:
+            filter_expression = Attr('title').eq(title) & Attr('artist').eq(artist)
+        elif year and artist:
+            filter_expression = Attr('year').eq(year) & Attr('artist').eq(artist)
+        else:
+            filter_expression = Attr('title').eq(title) & Attr('year').eq(year) & Attr('artist').eq(artist)
+
         try:
-            response = self.table.scan(
-                FilterExpression=Attr('title').eq(title) & Attr('year').eq(year) & Attr('artist').eq(artist))
+            response = self.table.scan(FilterExpression=filter_expression)
         except ClientError as err:
             logger.error(
                 "Couldn't query for songs %s. Here's why: %s: %s",
@@ -180,6 +224,91 @@ class Songs:
             raise
         else:
             return response['Items']
+
+
+class Subscriptions:
+    def __init__(self, dyn_resource):
+        self.table = None
+        self.dyn_resource = dyn_resource
+
+    def exists(self, table_name):
+        try:
+            table = self.dyn_resource.Table(table_name)
+            table.load()
+            exists = True
+        except ClientError as err:
+            if err.response['Error']['Code'] == 'ResourceNotFoundException':
+                exists = False
+            else:
+                logger.error(
+                    "Couldn't check for existence of %s. Here's why: %s: %s",
+                    table_name,
+                    err.response['Error']['Code'], err.response['Error']['Message'])
+                raise
+        else:
+            self.table = table
+        return exists
+
+    def create_table(self, table_name):
+        try:
+            self.table = self.dyn_resource.create_table(
+                TableName=table_name,
+                KeySchema=[
+                    {'AttributeName': 'email', 'KeyType': 'HASH'},  # Partition key
+                    {'AttributeName': 'title', 'KeyType': 'RANGE'}  # Sort key
+                ],
+                AttributeDefinitions=[
+                    {'AttributeName': 'email', 'AttributeType': 'S'},
+                    {'AttributeName': 'title', 'AttributeType': 'S'},
+                ],
+                ProvisionedThroughput={'ReadCapacityUnits': 10, 'WriteCapacityUnits': 10})
+            self.table.wait_until_exists()
+        except ClientError as err:
+            logger.error(
+                "Couldn't create table %s. Here's why: %s: %s", table_name,
+                err.response['Error']['Code'], err.response['Error']['Message'])
+            raise
+        else:
+            return self.table
+
+    def add_song(self, email, song):
+        try:
+            self.table.put_item(
+                Item={
+                    'email': email,
+                    'title': song['title'],
+                    'song': {'title': song['title'], 'artist': song['artist'], 'year': song['year'],
+                             'web_url': song['web_url'], 'img_url': song['img_url']}})
+        except ClientError as err:
+            logger.error(
+                "Couldn't add movie %s to table %s. Here's why: %s: %s",
+                email, self.table.name,
+                err.response['Error']['Code'], err.response['Error']['Message'])
+            raise
+
+    def scan_subscriptions(self):
+        try:
+            response = self.table.scan()
+        except ClientError as err:
+            logger.error(
+                "Couldn't query for songs %s. Here's why: %s: %s",
+                err.response['Error']['Code'], err.response['Error']['Message'])
+            raise
+        else:
+            return response['Items']
+
+    def delete_song(self, email, title):
+        try:
+            self.table.delete_item(Key={'email': email, 'title': title})
+        except ClientError as err:
+            logger.error(
+                "Couldn't delete movie %s. Here's why: %s: %s", title,
+                err.response['Error']['Code'], err.response['Error']['Message'])
+            raise
+
+
+songs = Songs(boto3.resource('dynamodb', 'ap-southeast-2'))
+subscriptions = Subscriptions(boto3.resource('dynamodb', 'ap-southeast-2'))
 
 
 class LoginForm(FlaskForm):
@@ -268,6 +397,24 @@ def init_songs(table_name, songs_file_name, dyn_resource):
     return songs
 
 
+def init_subscriptions(table_name, dyn_resource):
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+
+    print('-' * 88)
+    print("Initializing subscriptions.")
+    print('-' * 88)
+
+    subscriptions = Subscriptions(dyn_resource)
+    subscriptions_exists = subscriptions.exists(table_name)
+
+    if not subscriptions_exists:
+        print(f"\nCreating table {table_name}...")
+        subscriptions.create_table(table_name)
+        print(f"\nCreated table {subscriptions.table.name}.")
+
+    return subscriptions
+
+
 def get_images(table_name, dyn_resource, s3_client):
     logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
@@ -319,7 +466,8 @@ def get_num_objs(bucket, s3_client):
     return num_objs
 
 
-def generate_pre_signed_url(s3_client, s3_object_key):
+def generate_pre_signed_url(s3_object_key):
+    s3_client = boto3.client('s3')
     try:
         url = s3_client.generate_presigned_url(
             ClientMethod="get_object",
@@ -332,3 +480,17 @@ def generate_pre_signed_url(s3_client, s3_object_key):
             "Couldn't get a pre-signed URL for client method '%s'.")
         raise
     return url
+
+
+def subscribe_new_music(partition_key, sort_key):
+    song = {}
+    if songs.exists("music"):
+        song = songs.get_song(partition_key, sort_key)
+
+    if subscriptions.exists("subscriptions"):
+        subscriptions.add_song(session['email'], song)
+
+
+def remove_music(partition_key, sort_key):
+    if subscriptions.exists("subscriptions"):
+        subscriptions.delete_song(partition_key, sort_key)

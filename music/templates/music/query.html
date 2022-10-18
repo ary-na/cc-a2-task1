@@ -60,22 +60,28 @@
             </div>
         </form>
 
-
         <div class="row row-cols-1 row-cols-md-3 g-4 px-xl-4 mb-3">
-
-            <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
+            {% for song in songs %}
+                <div class="col">
+                    <div class="card">
+                        <img src="{{ generate_pre_signed_url(song['img_url']) }}" class="card-img-top"
+                             alt="{{ song['artist'] }}">
+                        <div class="card-body d-flex justify-content-between align-content-center">
+                            <div>
+                                <h5 class="card-title">{{ song['title'] }}</h5>
+                                <h6 class="card-title">{{ song['artist'] }}</h6>
+                                <p class="card-text">{{ song['year'] }}</p>
+                            </div>
+                            <div class="align-self-end">
+                                <a type="button" href="/subscribe/{{ song['title'] }}/{{ song['artist'] }}"
+                                   class="btn btn-sm btn-outline-primary rounded-pill">Subscribe
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            {% endfor %}
         </div>
     </div>
-
 
 {% endblock %}
