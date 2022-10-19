@@ -94,19 +94,6 @@ class Logins:
                 err.response['Error']['Code'], err.response['Error']['Message'])
             raise
 
-    def add_subscription(self, email, song):
-        try:
-            self.table.update_item(
-                Key={'email': email},
-                UpdateExpression="set subscriptions=:s",
-                ExpressionAttributeValues={':s': song})
-        except ClientError as err:
-            logger.error(
-                "Couldn't update movie %s in table %s. Here's why: %s: %s",
-                email, self.table.name,
-                err.response['Error']['Code'], err.response['Error']['Message'])
-            raise
-
     def query_login(self, email):
         try:
             response = self.table.query(KeyConditionExpression=Key('email').eq(email))

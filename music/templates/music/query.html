@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="d-flex w-75 flex-column mx-auto mb-auto mt-3 mb-3 align-content-center justify-content-center border rounded">
+    <div class="d-flex w-75 flex-column mx-auto mb-auto mb-3 align-content-center justify-content-center">
         <form class="p-2" action="" method="post">
             {{ form.csrf_token }}
             <div class="d-flex flex-row justify-content-between">
@@ -73,7 +73,7 @@
                                 <p class="card-text">{{ song['year'] }}</p>
                             </div>
                             <div class="align-self-end">
-                                <a type="button" href="/subscribe/{{ song['title'] }}/{{ song['artist'] }}"
+                                <a type="button" href="/subscribe/{{ song['title']|safe }}/{{ song['artist']|safe }}"
                                    class="btn btn-sm btn-outline-primary rounded-pill">Subscribe
                                 </a>
                             </div>
