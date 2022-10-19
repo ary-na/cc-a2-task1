@@ -65,49 +65,32 @@ For more information visit [Academic Integrity at RMIT](https://www.rmit.edu.au/
 
 [29] ampersand, Quentin, ALFA and Lê Tư Thành, "How to query all rows of one column in DynamoDB?", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/54996861/how-to-query-all-rows-of-one-column-in-dynamodb. [Accessed: 19- Oct- 2022].
 
+[30] B. Solomon and MP32, ""No connection adapters were found"", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/72192980/no-connection-adapters-were-found. [Accessed: 19- Oct- 2022].
 
+[31] "presigned_url.py", docs.aws.amazon.com, 2022. [Online]. Available: https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html. [Accessed: 19- Oct- 2022].
 
+[32] "How to convert a dictionary to a string in Python? - AskPython", AskPython, 2022. [Online]. Available: https://www.askpython.com/python/string/dictionary-to-a-string. [Accessed: 19- Oct- 2022].
 
+[33] dgh et al., "Upload image available at public URL to S3 using boto", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/14346065/upload-image-available-at-public-url-to-s3-using-boto?rq=1. [Accessed: 19- Oct- 2022].
 
+[34] A. Yohan Malshika, "DynamoDB Filter Expressions (Ultimate Guide w/ Examples)", Dynobase.dev, 2022. [Online]. Available: https://dynobase.dev/dynamodb-filterexpression/. [Accessed: 19- Oct- 2022].
 
+[35] P. Acsany, "Primer on Jinja Templating – Real Python", Realpython.com, 2022. [Online]. Available: https://realpython.com/primer-on-jinja-templating/. [Accessed: 19- Oct- 2022].
 
+[36] "Write an item to a DynamoDB table", docs.aws.amazon.com, 2022. [Online]. Available: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.WriteItem.html. [Accessed: 19- Oct- 2022].
 
+[37] Laren-AWS, "aws-doc-sdk-examples/scenario_getting_started_movies.py at main · awsdocs/aws-doc-sdk-examples", GitHub, 2022. [Online]. Available: https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/dynamodb/GettingStarted/scenario_getting_started_movies.py. [Accessed: 19- Oct- 2022].
 
+[38] L. Stanley, R. Cowie, Никита Шишкин and gerardw, "Call a python function from jinja2", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/6036082/call-a-python-function-from-jinja2. [Accessed: 19- Oct- 2022].
 
+[39] "QueryFilter", docs.aws.amazon.com, 2022. [Online]. Available: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.QueryFilter.html. [Accessed: 19- Oct- 2022].
 
-https://stackoverflow.com/questions/72192980/no-connection-adapters-were-found
+[40] "Scan a DynamoDB table", docs.aws.amazon.com, 2022. [Online]. Available: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.Scan.html. [Accessed: 19- Oct- 2022].
 
+[41] "Python Switch Case with Examples", pythongeeks.org, 2022. [Online]. Available: https://pythongeeks.org/switch-in-python/. [Accessed: 19- Oct- 2022].
 
-https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html
+[42] T. Lathuille et al., "Dynamodb scan() using FilterExpression", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/44704443/dynamodb-scan-using-filterexpression. [Accessed: 19- Oct- 2022].
 
+[43] "Query a DynamoDB table", docs.aws.amazon.com, 2022. [Online]. Available: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.Query.html. [Accessed: 19- Oct- 2022].
 
-
-https://www.askpython.com/python/string/dictionary-to-a-string
-
-
-https://stackoverflow.com/questions/14346065/upload-image-available-at-public-url-to-s3-using-boto?rq=1
-
-
-https://dynobase.dev/dynamodb-filterexpression/
-
-
-https://realpython.com/primer-on-jinja-templating/
-
-https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.WriteItem.html
-
-https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/dynamodb/GettingStarted/scenario_getting_started_movies.py
-
-
-https://stackoverflow.com/questions/6036082/call-a-python-function-from-jinja2
-
-
-https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.QueryFilter.html
-
-https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.Scan.html
-https://pythongeeks.org/switch-in-python/
-
-https://stackoverflow.com/questions/44704443/dynamodb-scan-using-filterexpression
-
-https://stackoverflow.com/questions/47569793/how-do-i-query-dynamodb-with-non-primary-key-field
-
-https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.Query.html
+[44] J. Astrahan, P. Sharma, D. Grinko, marc_s, Kevin Hooke and Eyal Ch, "How do I query DynamoDB with non primary key field?", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/47569793/how-do-i-query-dynamodb-with-non-primary-key-field. [Accessed: 19- Oct- 2022].
