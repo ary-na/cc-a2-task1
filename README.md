@@ -33,31 +33,46 @@ For more information visit [Academic Integrity at RMIT](https://www.rmit.edu.au/
 
 [13] N. Hadiq, "Deploy a Flask app on AWS EC2", Medium, 2022. [Online]. Available: https://medium.com/innovation-incubator/deploy-a-flask-app-on-aws-ec2-d1d774c275a2. [Accessed: 07- Oct- 2022].
 
+[14] "Templates — Flask Documentation (2.2.x)", Flask.palletsprojects.com, 2022. [Online]. Available: https://flask.palletsprojects.com/en/2.2.x/templating/#standard-filters. [Accessed: 19- Oct- 2022].
+
+[15] "Flask-Session — Flask-Sessions 0.0.4 documentation", Flask-session.readthedocs.io, 2022. [Online]. Available: https://flask-session.readthedocs.io/en/latest/. [Accessed: 19- Oct- 2022].
+
+[16] F. Florencio Garcia, "Flask Sessions, what are they for, how it works, what options I have to persist this data?", Medium, 2022. [Online]. Available: https://medium.com/thedevproject/flask-sessions-what-are-they-for-how-it-works-what-options-i-have-to-persist-this-data-4ca48a34d3. [Accessed: 19- Oct- 2022].
+
+[17] "Create a DynamoDB table using an AWS SDK", docs.aws.amazon.com, 2022. [Online]. Available: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/example_dynamodb_CreateTable_section.html. [Accessed: 19- Oct- 2022].
+
+[18] "How to create JSON File?", Codebeautify.org, 2022. [Online]. Available: https://codebeautify.org/blog/how-to-create-json-file/. [Accessed: 19- Oct- 2022].
+
+[19] K. Chris, "CSS Vertical Align – How to Center a Div, Text, or an Image [Example Code]", freeCodeCamp.org, 2022. [Online]. Available: https://www.freecodecamp.org/news/css-vertical-align-how-to-center-a-div-text-or-an-image-example-code/. [Accessed: 19- Oct- 2022].
+
+[20] a. Mark Otto, "Introduction", Getbootstrap.com, 2022. [Online]. Available: https://getbootstrap.com/docs/5.0/getting-started/introduction/. [Accessed: 19- Oct- 2022].
+
+[21] "What is Python KeyError and How to Handle it with 3 Examples", A-Z Tech, 2022. [Online]. Available: https://www.jquery-az.com/python-keyerror-handle-3-examples/. [Accessed: 19- Oct- 2022].
+
+[22] C. Hansen, "Python KeyError Exceptions and How to Handle Them – Real Python", Realpython.com, 2022. [Online]. Available: https://realpython.com/python-keyerror/. [Accessed: 19- Oct- 2022].
+
+[23] S. S, "CRUD operations on DynamoDB with Flask APIs", Medium, 2022. [Online]. Available: https://medium.com/featurepreneur/crud-operations-on-dynamodb-with-flask-apis-916f6cae992. [Accessed: 19- Oct- 2022].
+
+[24] B. Oakley and Blendouble, "NoneType' object has no attribute '__getitem__'", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/24119731/nonetype-object-has-no-attribute-getitem. [Accessed: 19- Oct- 2022].
+
+[25] Laren-AWS, "aws-doc-sdk-examples/scenario_getting_started_movies.py at main · awsdocs/aws-doc-sdk-examples", GitHub, 2022. [Online]. Available: https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/dynamodb/GettingStarted/scenario_getting_started_movies.py. [Accessed: 19- Oct- 2022].
+
+[26] Tech With Tim, "Python Website Full Tutorial - Flask, Authentication, Databases & More", Youtube.com, 2022. [Online]. Available: https://www.youtube.com/watch?v=dam0GPOAvVI&t=7143s. [Accessed: 19- Oct- 2022].
+
+[27] J. Rai, "Upload Files To S3 in Python using boto3 | Python Upload Files to S3 - TutorialsBuddy", Tutorialsbuddy.com, 2022. [Online]. Available: https://www.tutorialsbuddy.com/python-upload-file-to-s3. [Accessed: 19- Oct- 2022].
+
+[28] J. Rotenstein, D. Richard and Z. Smith, "How to determine if an AWS s3 bucket has at least one public object?", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/61066179/how-to-determine-if-an-aws-s3-bucket-has-at-least-one-public-object. [Accessed: 19- Oct- 2022].
+
+[29] ampersand, Quentin, ALFA and Lê Tư Thành, "How to query all rows of one column in DynamoDB?", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/54996861/how-to-query-all-rows-of-one-column-in-dynamodb. [Accessed: 19- Oct- 2022].
 
 
 
-https://flask-session.readthedocs.io/en/latest/
-https://medium.com/thedevproject/flask-sessions-what-are-they-for-how-it-works-what-options-i-have-to-persist-this-data-4ca48a34d3
-https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/example_dynamodb_CreateTable_section.html
-https://codebeautify.org/blog/how-to-create-json-file/
-https://www.freecodecamp.org/news/css-vertical-align-how-to-center-a-div-text-or-an-image-example-code/
-https://getbootstrap.com/docs/5.0/getting-started/introduction/
-https://www.jquery-az.com/python-keyerror-handle-3-examples/
-https://realpython.com/python-keyerror/
-https://medium.com/featurepreneur/crud-operations-on-dynamodb-with-flask-apis-916f6cae992
-https://stackoverflow.com/questions/24119731/nonetype-object-has-no-attribute-getitem
-https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/dynamodb/GettingStarted/scenario_getting_started_movies.py
 
 
-https://www.youtube.com/watch?v=dam0GPOAvVI&t=7143s
 
 
-https://www.tutorialsbuddy.com/python-upload-file-to-s3
 
 
-https://stackoverflow.com/questions/61066179/how-to-determine-if-an-aws-s3-bucket-has-at-least-one-public-object
-
-https://stackoverflow.com/questions/54996861/how-to-query-all-rows-of-one-column-in-dynamodb
 
 
 https://stackoverflow.com/questions/72192980/no-connection-adapters-were-found
