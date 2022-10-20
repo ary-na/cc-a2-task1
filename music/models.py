@@ -213,7 +213,7 @@ class Logins:
         else:
             return response['Item']
 
-    def add_login(self, email, password, user_name):
+    def add_login(self, email, user_name, password):
         try:
             self.table.put_item(
                 Item={
@@ -408,7 +408,7 @@ class Subscriptions:
 
     def scan_subscriptions(self):
         try:
-            response = self.table.scan()
+            response = self.table.scan(FilterExpression=Attr('email').eq(session['email']))
         except ClientError as err:
             logger.error(
                 "Couldn't query for songs %s. Here's why: %s: %s",

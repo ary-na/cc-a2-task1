@@ -34,7 +34,6 @@ from music.models import QueryForm, Songs, generate_pre_signed_url, subscribe_ne
 # Available: https://realpython.com/python-keyerror/. [Accessed: 19- Oct- 2022].
 
 
-
 views = Blueprint('views', __name__, template_folder="templates/music")
 
 songs = Songs(boto3.resource('dynamodb', 'ap-southeast-2'))
