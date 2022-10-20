@@ -1,9 +1,16 @@
 # cc-a2-task1
 
-
 RMIT University - Academic Integrity Warning:
 > "For serious breaches of academic integrity, students can be charged with academic misconduct. Possible penalties include **cancellation of results** and **expulsion resulting in the cancellation of a student's program**."
 For more information visit [Academic Integrity at RMIT](https://www.rmit.edu.au/students/my-course/assessment-results/academic-integrity)
+
+**Home page** screenshot
+![Home page](static/img/Home.png)
+
+**Query page** screenshot
+![Query page](static/img/Query.png)
+
+[Amazon AWS EC2 Public IPv4 DNS](http://ec2-3-26-185-82.ap-southeast-2.compute.amazonaws.com)
 
 ## References
 
@@ -94,3 +101,9 @@ For more information visit [Academic Integrity at RMIT](https://www.rmit.edu.au/
 [43] "Query a DynamoDB table", docs.aws.amazon.com, 2022. [Online]. Available: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.Query.html. [Accessed: 19- Oct- 2022].
 
 [44] J. Astrahan, P. Sharma, D. Grinko, marc_s, Kevin Hooke and Eyal Ch, "How do I query DynamoDB with non primary key field?", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/47569793/how-do-i-query-dynamodb-with-non-primary-key-field. [Accessed: 19- Oct- 2022].
+
+[45] How can I grant my Amazon EC2 instance access to an Amazon S3 bucket?, 20-Sep-2022. [Online]. Available: https://aws.amazon.com/premiumsupport/knowledge-center/ec2-instance-access-s3-bucket/. [Accessed: 20-Oct-2022]. 
+
+[46] S. Engdahl, “Blogs,” Amazon, 2008. [Online]. Available: https://aws.amazon.com/blogs/security/writing-iam-policies-how-to-grant-access-to-an-amazon-s3-bucket/. [Accessed: 20-Oct-2022]. 
+
+[47] J. Scharf, “Blogs,” Amazon, 06-May-2013. [Online]. Available: https://aws.amazon.com/blogs/security/writing-iam-policies-how-to-grant-access-to-an-amazon-s3-bucket/. [Accessed: 20-Oct-2022]. 
