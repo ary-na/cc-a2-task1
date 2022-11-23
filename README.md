@@ -10,7 +10,7 @@ For more information visit [Academic Integrity at RMIT](https://www.rmit.edu.au/
 **Query page** screenshot
 ![Query page](static/img/Query.png)
 
-[Amazon AWS EC2 Public IPv4 DNS](http://ec2-3-26-185-82.ap-southeast-2.compute.amazonaws.com)
+~~[Amazon AWS EC2 Public IPv4 DNS](http://ec2-3-26-185-82.ap-southeast-2.compute.amazonaws.com)~~
 
 ## References
 
